@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.API", "SocialMemin.API\SocialMemin.API.csproj", "{CD921482-C9E3-4549-97B7-2A437AEFFF46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Application", "SocialMemin.Application\SocialMemin.Application.csproj", "{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Domain", "SocialMemin.Domain\SocialMemin.Domain.csproj", "{80EE871C-E489-4E6E-9EC1-99411B49BEB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Persistence", "SocialMemin.Persistence\SocialMemin.Persistence.csproj", "{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD921482-C9E3-4549-97B7-2A437AEFFF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD921482-C9E3-4549-97B7-2A437AEFFF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD921482-C9E3-4549-97B7-2A437AEFFF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD921482-C9E3-4549-97B7-2A437AEFFF46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80EE871C-E489-4E6E-9EC1-99411B49BEB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EE871C-E489-4E6E-9EC1-99411B49BEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EE871C-E489-4E6E-9EC1-99411B49BEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EE871C-E489-4E6E-9EC1-99411B49BEB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {618FDCC2-B969-4E5A-984C-08489D502FEB}
+	EndGlobalSection
+EndGlobal
