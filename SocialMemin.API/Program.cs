@@ -1,13 +1,11 @@
 using Microsoft.EntityFrameworkCore;
+using SocialMemin.API.Extensions;
 using SocialMemin.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<DataContext>(opt => { opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));});
+builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -17,7 +15,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("CustomCorsPolicy");
 app.UseAuthorization();
 app.MapControllers();
 
