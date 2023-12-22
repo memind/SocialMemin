@@ -20,9 +20,11 @@ namespace SocialMemin.Application.Activities
             
             async Task IRequestHandler<Command>.Handle(Command request, CancellationToken cancellationToken)
             {
-                request.Activity.Id = request.Id;
-                var activity = await _context.Activities.FindAsync(request.Activity.Id);
+                //request.Activity.Id = request.Id;
+                //var activity = await _context.Activities.FindAsync(request.Activity.Id);
+                //activity = request.Activity;
 
+                await Task.Run(() => _context.Update(request.Activity));
                 await _context.SaveChangesAsync();
             }
         }

@@ -15,7 +15,7 @@ namespace SocialMemin.Application.Activities
 
             public Handler(DataContext context) =>_context = context;
             
-            public async Task<List<Activity>> Handle(Query request, CancellationToken token) =>  await _context.Activities.ToListAsync();
+            public async Task<List<Activity>> Handle(Query request, CancellationToken token) =>  await _context.Activities.OrderByDescending(a => a.Date).ToListAsync();
             
         }
     }
