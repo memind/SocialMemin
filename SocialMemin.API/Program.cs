@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SocialMemin.API.Extensions;
+using SocialMemin.API.Middleware;
 using SocialMemin.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

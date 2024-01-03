@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
+using SocialMemin.Application.Core;
 using SocialMemin.Domain;
 using SocialMemin.Persistence;
 
@@ -6,26 +8,39 @@ namespace SocialMemin.Application.Activities
 {
     public class Edit
     {
-        public class Command : IRequest
+        public class Command : IRequest<Result<Unit>>
         {
             public Activity Activity { get; set; }
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+            }
+        }
+
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
 
             public Handler(DataContext context) => _context = context;
-            
-            async Task IRequestHandler<Command>.Handle(Command request, CancellationToken cancellationToken)
-            {
-                //request.Activity.Id = request.Id;
-                //var activity = await _context.Activities.FindAsync(request.Activity.Id);
-                //activity = request.Activity;
 
-                await Task.Run(() => _context.Update(request.Activity));
-                await _context.SaveChangesAsync();
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
+            {
+                var activity = await _context.Activities.FindAsync(request.Activity.Id);
+
+                if (activity == null) 
+                    return null;
+
+                var result = await _context.SaveChangesAsync() > 0;
+
+                if (!result) 
+                    return Result<Unit>.Failure("Failed to update activity");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

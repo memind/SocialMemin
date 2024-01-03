@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation.AspNetCore;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using SocialMemin.Application.Activities;
 using SocialMemin.Application.Core;
 using SocialMemin.Persistence;
@@ -27,6 +29,9 @@ namespace SocialMemin.API.Extensions
                                     cfg.RegisterServicesFromAssemblyContaining<List>());
 
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
 
             return services;
         }
