@@ -1,12 +1,13 @@
 import { observer } from 'mobx-react-lite';
 import { SyntheticEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Item, Label, Segment } from "semantic-ui-react";
 import { useStore } from '../../../app/stores/store';
 
 
 export default observer(function ActivityList() {
-    const {activityStore} = useStore();
-    const {deleteActivity, activitiesByDate, loading} = activityStore;
+    const { activityStore } = useStore();
+    const { deleteActivity, activitiesByDate, loading } = activityStore;
 
     const [target, setTarget] = useState('');
 
@@ -28,13 +29,12 @@ export default observer(function ActivityList() {
                                 <div>{activity.city}, {activity.venue}</div>
                             </Item.Description>
                             <Item.Extra>
-                                <Button floated='right' content='View' color='blue'
-                                        onClick={() => activityStore.selectActivity(activity.id)}/>
-                                <Button loading={loading  && target === activity.id}
-                                        name={activity.id} floated='right' content='Delete'
-                                        color='red'
-                                        onClick={(e) => handleDeleteActivity(e, activity.id)}/>
-                                <Label basic content={activity.category}/>
+                                <Button as={Link} to={`/activities/${activity.id}`} floated='right' content='View' color='blue' />
+                                <Button loading={loading && target === activity.id}
+                                    name={activity.id} floated='right' content='Delete'
+                                    color='red'
+                                    onClick={(e) => handleDeleteActivity(e, activity.id)} />
+                                <Label basic content={activity.category} />
                             </Item.Extra>
                         </Item.Content>
                     </Item>
