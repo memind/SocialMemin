@@ -2,6 +2,7 @@
 using SocialMemin.API.Services;
 using SocialMemin.Domain;
 using SocialMemin.Persistence;
+using SocialMemin.Infrastructure.Security;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -28,6 +29,14 @@ namespace SocialMemin.API.Extensions
                         ValidateAudience = false,
                     };
                 });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("IsActivityHost", policy =>
+                {
+                    policy.Requirements.Add(new IsHostRequirement());
+                });
+            });
 
             services.AddScoped<TokenService>();
 

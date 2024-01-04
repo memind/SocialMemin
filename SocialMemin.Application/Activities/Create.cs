@@ -1,6 +1,8 @@
 ﻿using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using SocialMemin.Application.Core;
+using SocialMemin.Application.Interfaces;
 using SocialMemin.Domain;
 using SocialMemin.Persistence;
 
@@ -16,8 +18,14 @@ namespace SocialMemin.Application.Activities
         public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
+            private readonly IUserAccessor _userAccessor;
 
-            public Handler(DataContext context) => _context = context;
+            public Handler(DataContext context, IUserAccessor userAccessor)
+            {
+                _context = context;
+                _userAccessor = userAccessor;
+            }
+
             public class CommandValidator : AbstractValidator<Command>
             {
                 public CommandValidator()
@@ -28,6 +36,18 @@ namespace SocialMemin.Application.Activities
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                var user = await _context.Users.FirstOrDefaultAsync(x =>
+                    x.UserName == _userAccessor.GetUsername());
+
+                var attendee = new ActivityAttendee
+                {
+                    AppUser = user,
+                    Activity = request.Activity,
+                    IsHost = true
+                };
+
+                request.Activity.Attendees.Add(attendee);
+
                 _context.Activities.Add(request.Activity);
                 var result = await _context.SaveChangesAsync() > 0;
 

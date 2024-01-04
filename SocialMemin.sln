@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.API", "SocialMemin.API\SocialMemin.API.csproj", "{CD921482-C9E3-4549-97B7-2A437AEFFF46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMemin.API", "SocialMemin.API\SocialMemin.API.csproj", "{CD921482-C9E3-4549-97B7-2A437AEFFF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Application", "SocialMemin.Application\SocialMemin.Application.csproj", "{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMemin.Application", "SocialMemin.Application\SocialMemin.Application.csproj", "{90B0074E-C5E7-44F4-BA6C-75B4E41294FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Domain", "SocialMemin.Domain\SocialMemin.Domain.csproj", "{80EE871C-E489-4E6E-9EC1-99411B49BEB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMemin.Domain", "SocialMemin.Domain\SocialMemin.Domain.csproj", "{80EE871C-E489-4E6E-9EC1-99411B49BEB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Persistence", "SocialMemin.Persistence\SocialMemin.Persistence.csproj", "{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialMemin.Persistence", "SocialMemin.Persistence\SocialMemin.Persistence.csproj", "{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocialMemin.Infrastructure", "SocialMemin.Infrastructure\SocialMemin.Infrastructure.csproj", "{AB7944B9-1CC9-498F-ACC2-8613C1E212B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B337FD6-0A93-46E0-BD6D-186B3D5216EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB7944B9-1CC9-498F-ACC2-8613C1E212B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB7944B9-1CC9-498F-ACC2-8613C1E212B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB7944B9-1CC9-498F-ACC2-8613C1E212B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB7944B9-1CC9-498F-ACC2-8613C1E212B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

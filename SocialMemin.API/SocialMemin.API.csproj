@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SocialMemin.Application\SocialMemin.Application.csproj" />
+    <ProjectReference Include="..\SocialMemin.Infrastructure\SocialMemin.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

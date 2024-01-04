@@ -10,7 +10,6 @@ using SocialMemin.Persistence;
 namespace SocialMemin.API.Controllers
 {
     [Route("/api/[controller]")]
-    [AllowAnonymous]
     [ApiController]
     public class ActivitiesController : ControllerBase
     {
@@ -20,11 +19,11 @@ namespace SocialMemin.API.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<Activity>>> GetActivities() => HandleResult(await _mediator.Send(new List.Query()));
+        public async Task<IActionResult> GetActivities() => HandleResult(await _mediator.Send(new List.Query()));
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Activity>> GetActivity(Guid id) => HandleResult(await _mediator.Send(new Details.Query { Id = id }));
+        public async Task<IActionResult> GetActivity(Guid id) => HandleResult(await _mediator.Send(new Details.Query { Id = id }));
 
 
         [HttpPost]
@@ -32,11 +31,17 @@ namespace SocialMemin.API.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "IsActivityHost")]
         public async Task<IActionResult> Edit(Guid id, Activity activity) => HandleResult(await _mediator.Send(new Edit.Command { Activity = activity }));
 
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id) => HandleResult(await _mediator.Send(new Delete.Command { Id = id }));
+
+
+        [HttpPost("{id}/attend")]
+        public async Task<IActionResult> Attend(Guid id) =>  HandleResult(await _mediator.Send(new UpdateAttendance.Command { Id = id }));
+        
 
         protected ActionResult HandleResult<T>(Result<T> result)
         {

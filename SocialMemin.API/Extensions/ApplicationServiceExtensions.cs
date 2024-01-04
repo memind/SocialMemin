@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using SocialMemin.Application.Activities;
 using SocialMemin.Application.Core;
 using SocialMemin.Persistence;
+using SocialMemin.Application.Interfaces;
+using SocialMemin.Infrastructure.Security;
 
 namespace SocialMemin.API.Extensions
 {
@@ -21,9 +23,9 @@ namespace SocialMemin.API.Extensions
 
             services.AddCors(opt =>
                                 opt.AddPolicy("CustomCorsPolicy", policy =>
-                                                                policy.AllowAnyMethod()
-                                                                      .AllowAnyHeader()
-                                                                      .WithOrigins("http://localhost:3000")));
+                                                                    policy.AllowAnyMethod()
+                                                                          .AllowAnyHeader()
+                                                                          .WithOrigins("http://localhost:3000")));
 
             services.AddMediatR(cfg =>
                                     cfg.RegisterServicesFromAssemblyContaining<List>());
@@ -32,6 +34,9 @@ namespace SocialMemin.API.Extensions
 
             services.AddFluentValidationAutoValidation();
             services.AddValidatorsFromAssemblyContaining<Create>();
+
+            services.AddHttpContextAccessor();
+            services.AddScoped<IUserAccessor, UserAccessor>();
 
             return services;
         }
