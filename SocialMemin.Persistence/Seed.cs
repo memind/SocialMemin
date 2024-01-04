@@ -1,12 +1,27 @@
-﻿using SocialMemin.Domain;
+﻿using Microsoft.AspNetCore.Identity;
+using SocialMemin.Domain;
 using SocialMemin.Persistence;
 
 namespace SocialMemin.Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(DataContext context)
+        public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
         {
+            if (!userManager.Users.Any())
+            {
+                var users = new List<AppUser>()
+                {
+                    new AppUser{DisplayName = "Memin.d", UserName = "Emin", Email = "memin@memin.com"},
+                    new AppUser{DisplayName = "Nurrr", UserName = "Nur", Email = "nur@nur.com"},
+                    new AppUser{DisplayName = "Emre", UserName = "Emre", Email = "emre@emre.com"},
+                };
+
+                foreach (var user in users)
+                    await userManager.CreateAsync(user, "Zxcasdqwe.123");
+                
+            }
+
             if (context.Activities.Any()) return;
 
             var activities = new List<Activity>

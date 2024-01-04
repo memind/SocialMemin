@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialMemin.Application.Activities;
@@ -15,7 +16,7 @@ namespace SocialMemin.API.Controllers
         private IMediator _mediator;
 
         public ActivitiesController( IMediator mediator) => _mediator = mediator;
-        
+
 
         [HttpGet]
         public async Task<ActionResult<List<Activity>>> GetActivities() => HandleResult(await _mediator.Send(new List.Query()));
