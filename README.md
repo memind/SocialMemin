@@ -5,10 +5,12 @@ API
 - SQLite database connection
 - ORM: Entity Framework Core
 - CQRS Pattern, MediatR implementation.
-- AutoMapper implementation.
+- AutoMapper, FluentValidation implementation.
 
 CLIENT
 - React project.
+- UI: Semantic UI
 - Tooling: ViteJS.
 - Variant: Typescript + SWC
-- Libraries: Axios and UUID
+- Routing: React Router
+- Libraries: Axios, UUID, MobX, Toastify, Formik, Yup
