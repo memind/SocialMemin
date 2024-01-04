@@ -5,6 +5,7 @@ API
 - SQLite database connection
 - ORM: Entity Framework Core
 - CQRS Pattern, MediatR implementation.
+- Identity and JWT
 - AutoMapper, FluentValidation implementation.
 
 CLIENT
