@@ -14,7 +14,7 @@ namespace SocialMemin.Persistence
                 {
                     new AppUser{DisplayName = "Memin.d", UserName = "Emin", Email = "memin@memin.com"},
                     new AppUser{DisplayName = "Nurrr", UserName = "Nur", Email = "nur@nur.com"},
-                    new AppUser{DisplayName = "Emre", UserName = "Emre", Email = "emre@emre.com"},
+                    new AppUser{DisplayName = "Emredncr", UserName = "Emre", Email = "emre@emre.com"},
                 };
 
                 foreach (var user in users)

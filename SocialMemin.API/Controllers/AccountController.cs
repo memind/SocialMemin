@@ -52,10 +52,16 @@ namespace SocialMemin.API.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto register)
         {
             if (await _manager.Users.AnyAsync(u => u.UserName == register.Username))
-                return BadRequest("Username is already taken");
+            {
+                ModelState.AddModelError("username", "Username is already taken");
+                return ValidationProblem();
+            }
 
             if (await _manager.Users.AnyAsync(u => u.Email == register.Email))
-                return BadRequest("Email is already taken");
+            {
+                ModelState.AddModelError("email", "Email is already taken");
+                return ValidationProblem();
+            }
 
             var user = new AppUser
             {

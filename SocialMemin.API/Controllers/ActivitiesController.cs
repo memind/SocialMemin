@@ -10,6 +10,7 @@ using SocialMemin.Persistence;
 namespace SocialMemin.API.Controllers
 {
     [Route("/api/[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class ActivitiesController : ControllerBase
     {
