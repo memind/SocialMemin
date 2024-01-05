@@ -1,4 +1,3 @@
-import React from 'react';
 import { Menu, Header } from 'semantic-ui-react';
 import Calendar from 'react-calendar';
 

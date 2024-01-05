@@ -34,10 +34,10 @@ namespace SocialMemin.Infrastructure.Security
                 .FirstOrDefaultAsync(x => x.AppUserId == userId && x.ActivityId == activityId)
                 .Result;
 
-            if (attendee == null) 
+            if (attendee == null)
                 return Task.CompletedTask;
 
-            if (attendee.IsHost)
+            if (attendee.IsHost) 
                 context.Succeed(requirement);
 
             return Task.CompletedTask;

@@ -31,7 +31,7 @@ namespace SocialMemin.API.Controllers
 
 
         [HttpPut("{id}")]
-        [Authorize(Policy = "IsActivityHost")]
+        //[Authorize(Policy = "IsActivityHost")]
         public async Task<IActionResult> Edit(Guid id, Activity activity) => HandleResult(await _mediator.Send(new Edit.Command { Activity = activity }));
 
 

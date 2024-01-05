@@ -30,9 +30,9 @@ namespace SocialMemin.API.Extensions
                     };
                 });
 
-            services.AddAuthorization(opt =>
+            services.AddAuthorization(options =>
             {
-                opt.AddPolicy("IsActivityHost", policy =>
+                options.AddPolicy("IsActivityHost", policy =>
                 {
                     policy.Requirements.Add(new IsHostRequirement());
                 });
