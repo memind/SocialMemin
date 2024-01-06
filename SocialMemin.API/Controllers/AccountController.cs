@@ -26,7 +26,9 @@ namespace SocialMemin.API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
-            var user = await _manager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            var user = await _manager.Users.Include(p => p.Photos)
+                .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
+
             return CreateUserObject(user);
         }
 
@@ -34,7 +36,8 @@ namespace SocialMemin.API.Controllers
         [HttpPost]
         public async Task<ActionResult<UserDto>> Login(LoginDto login)
         {
-            var user = await _manager.FindByEmailAsync(login.Email);
+            var user = await _manager.Users.Include(p => p.Photos)
+                .FirstOrDefaultAsync(x => x.Email == login.Email);
 
             if (user == null) 
                 return Unauthorized();
@@ -93,7 +96,7 @@ namespace SocialMemin.API.Controllers
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Image = null,
+                Image = user?.Photos?.FirstOrDefault(x => x.IsMain)?.Url,
                 Token = _token.CreateToken(user),
                 Username = user.UserName
             };

@@ -6,6 +6,7 @@ using SocialMemin.Application.Core;
 using SocialMemin.Persistence;
 using SocialMemin.Application.Interfaces;
 using SocialMemin.Infrastructure.Security;
+using SocialMemin.Infrastructure.Photos;
 
 namespace SocialMemin.API.Extensions
 {
@@ -37,6 +38,9 @@ namespace SocialMemin.API.Extensions
 
             services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+
+            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
 
             return services;
         }
