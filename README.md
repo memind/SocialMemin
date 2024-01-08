@@ -6,7 +6,7 @@ API
 - ORM: Entity Framework Core
 - CQRS Pattern, MediatR implementation.
 - Identity and JWT
-- AutoMapper, FluentValidation implementation SignalR.
+- AutoMapper, FluentValidation, SignalR implementation.
 
 CLIENT
 - React project.
