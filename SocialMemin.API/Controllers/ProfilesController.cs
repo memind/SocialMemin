@@ -17,6 +17,9 @@ namespace SocialMemin.API.Controllers
 
         [HttpGet("{username}")]
         public async Task<IActionResult> GetProfile(string username) => HandleResult(await _mediator.Send(new Details.Query { Username = username }));
+
+        [HttpPut]
+        public async Task<IActionResult> Edit(Edit.Command command) => HandleResult(await _mediator.Send(command));
         
 
         protected ActionResult HandleResult<T>(Result<T> result)
