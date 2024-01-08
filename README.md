@@ -6,7 +6,7 @@ API
 - ORM: Entity Framework Core
 - CQRS Pattern, MediatR implementation.
 - Identity and JWT
-- AutoMapper, FluentValidation implementation.
+- AutoMapper, FluentValidation implementation SignalR.
 
 CLIENT
 - React project.
@@ -14,4 +14,4 @@ CLIENT
 - Tooling: ViteJS.
 - Variant: Typescript + SWC
 - Routing: React Router
-- Libraries: Axios, UUID, MobX, Toastify, Formik, Yup
+- Libraries: Axios, UUID, MobX, Toastify, Formik, Yup, SignalR
