@@ -1,4 +1,5 @@
 ﻿
+using SocialMemin.Application.Comments;
 using SocialMemin.Application.Profiles;
 
 namespace SocialMemin.Application.Activities
@@ -15,5 +16,6 @@ namespace SocialMemin.Application.Activities
         public string HostUsername { get; set; }
         public bool IsCancelled { get; set; }
         public ICollection<AttendeeDto> Attendees { get; set; }
+        public ICollection<CommentDto> Comments { get; set; }
     }
 }

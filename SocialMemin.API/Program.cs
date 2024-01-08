@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using SocialMemin.API.Extensions;
 using SocialMemin.API.Middleware;
+using SocialMemin.API.SignalR;
 using SocialMemin.Domain;
 using SocialMemin.Persistence;
 
@@ -34,6 +35,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<ChatHub>("/chat");
 
 
 using var scope = app.Services.CreateScope();

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SocialMemin.Application.Activities;
+using SocialMemin.Application.Comments;
 using SocialMemin.Domain;
 
 namespace SocialMemin.Application.Core
@@ -21,6 +22,11 @@ namespace SocialMemin.Application.Core
 
             CreateMap<AppUser, Profiles.Profile>()
                 .ForMember(d => d.Image, s => s.MapFrom(o => o.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            CreateMap<Comment, CommentDto>()
+                .ForMember(d => d.Username, o => o.MapFrom(s => s.Author.UserName))
+                .ForMember(d => d.DisplayName, o => o.MapFrom(s => s.Author.DisplayName))
+                .ForMember(d => d.Image, o => o.MapFrom(s => s.Author.Photos.FirstOrDefault(x => x.IsMain).Url));
         }
     }
 }
