@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SocialMemin.Application.Core;
+using SocialMemin.Application.Interfaces;
 using SocialMemin.Domain;
 using SocialMemin.Persistence;
 
@@ -19,17 +20,21 @@ namespace SocialMemin.Application.Activities
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
+            private readonly IUserAccessor _userAccessor;
 
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(DataContext context, IMapper mapper, IUserAccessor userAccessor)
             {
                 _context = context;
                 _mapper = mapper;
+                _userAccessor = userAccessor;
             }
 
-            public async Task<Result<ActivityDto>> Handle(Query request, CancellationToken cancellationToken) => 
-                Result<ActivityDto>.Success(await _context.Activities.ProjectTo<ActivityDto>(_mapper.ConfigurationProvider).FirstOrDefaultAsync(a => a.Id == request.Id));
-            
-            
+            public async Task<Result<ActivityDto>> Handle(Query request, CancellationToken cancellationToken) =>
+                Result<ActivityDto>.Success(await _context.Activities
+                    .ProjectTo<ActivityDto>(
+                    _mapper.ConfigurationProvider, 
+                    new { currentUsername = _userAccessor.GetUsername() })
+                    .FirstOrDefaultAsync(a => a.Id == request.Id));
         }
     }
 }

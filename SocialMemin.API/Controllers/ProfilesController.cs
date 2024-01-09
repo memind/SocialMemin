@@ -20,8 +20,10 @@ namespace SocialMemin.API.Controllers
 
         [HttpPut]
         public async Task<IActionResult> Edit(Edit.Command command) => HandleResult(await _mediator.Send(command));
-        
 
+        [HttpGet("{username}/activities")]
+        public async Task<IActionResult> GetUserActivities(string username, string predicate) => HandleResult(await _mediator.Send(new ListActivities.Query { Username = username, Predicate = predicate }));
+        
         protected ActionResult HandleResult<T>(Result<T> result)
         {
             if (result == null) return NotFound();

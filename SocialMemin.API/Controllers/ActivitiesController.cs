@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SocialMemin.API.Extensions;
 using SocialMemin.Application.Activities;
 using SocialMemin.Application.Core;
 using SocialMemin.Domain;
@@ -19,7 +20,7 @@ namespace SocialMemin.API.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetActivities() => HandleResult(await _mediator.Send(new List.Query()));
+        public async Task<IActionResult> GetActivities([FromQuery] ActivityParams param) =>  HandlePagedResult(await _mediator.Send(new List.Query { Params = param }));
 
 
         [HttpGet("{id}")]
@@ -40,7 +41,7 @@ namespace SocialMemin.API.Controllers
 
 
         [HttpPost("{id}/attend")]
-        public async Task<IActionResult> Attend(Guid id) =>  HandleResult(await _mediator.Send(new UpdateAttendance.Command { Id = id }));
+        public async Task<IActionResult> Attend(Guid id) => HandleResult(await _mediator.Send(new UpdateAttendance.Command { Id = id }));
         
 
         protected ActionResult HandleResult<T>(Result<T> result)
@@ -53,6 +54,21 @@ namespace SocialMemin.API.Controllers
             if (result.IsSuccess && result.Value == null)
                 return NotFound();
 
+            return BadRequest(result.Error);
+        }
+
+        protected ActionResult HandlePagedResult<T>(Result<PagedList<T>> result)
+        {
+            if (result == null) return NotFound();
+            if (result.IsSuccess && result.Value != null)
+            {
+                Response.AddPaginationHeader(result.Value.CurrentPage, result.Value.PageSize,
+                    result.Value.TotalCount, result.Value.TotalPages);
+                return Ok(result.Value);
+            }
+
+            if (result.IsSuccess && result.Value == null)
+                return NotFound();
             return BadRequest(result.Error);
         }
     }
