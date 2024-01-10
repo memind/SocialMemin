@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using SocialMemin.API.Consts;
 using SocialMemin.API.Extensions;
 using SocialMemin.API.Middleware;
 using SocialMemin.API.SignalR;
@@ -22,11 +23,21 @@ builder.Services.AddIdentityServices(builder.Configuration);
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
+app.AddSecurity();
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+else
+{
+    app.Use(async (context, next) =>
+    {
+        context.Response.Headers.Add(SecurityConsts.StrictTransportSecurity(), SecurityConsts.MaxAge());
+        await next.Invoke();
+    });
 }
 
 app.UseCors("CustomCorsPolicy");
