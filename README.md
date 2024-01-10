@@ -16,3 +16,4 @@ CLIENT
 - Variant: Typescript + SWC
 - Routing: React Router
 - Libraries: Axios, UUID, MobX, Toastify, Formik, Yup, SignalR
+- Features: Infinite Scrolling, Paging, Filtering, Sorting, Following, Real-Time Commenting
